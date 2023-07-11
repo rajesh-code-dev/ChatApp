@@ -1,0 +1,333 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <script src="https://kit.fontawesome.com/354d025927.js" crossorigin="anonymous"></script>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+  <title>Welcome to chat app</title>
+
+  <style>
+    .otp-input-fields {
+      margin: auto;
+      background-color: white;
+      box-shadow: 0px 0px 8px 0px #02025044;
+      max-width: 400px;
+      width: auto;
+      display: flex;
+      justify-content: center;
+      gap: 10px;
+      padding: 40px;
+    }
+
+    input {
+      height: 40px;
+      width: 40px;
+      background-color: transparent;
+      border-radius: 4px;
+      border: 1px solid #2f8f1f;
+      text-align: center;
+      outline: none;
+      font-size: 16px;
+
+    }
+
+    &::-webkit-outer-spin-button,
+    &::-webkit-inner-spin-button {
+      -webkit-appearance: none;
+      margin: 0;
+    }
+
+    /* Firefox */
+
+
+    &:focus {
+      border-width: 2px;
+      border-color: darken(#2f8f1f, 5%);
+      font-size: 20px;
+    }
+
+    .loader {
+      border: 16px solid #f3f3f3;
+      /* Light grey */
+      border-top: 16px solid #3498db;
+      /* Blue */
+      border-radius: 50%;
+      width: 120px;
+      height: 120px;
+      animation: spin 2s linear infinite;
+    }
+
+    @keyframes spin {
+      0% {
+        transform: rotate(0deg);
+      }
+
+      100% {
+        transform: rotate(360deg);
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <section class="vh-100" style="background-color: #eee;">
+    <div class="container h-100">
+      <div class="row d-flex justify-content-center align-items-center h-100">
+        <div class="col-lg-12 col-xl-11">
+          <div class="card text-black" style="border-radius: 25px;">
+            <div class="card-body p-md-5">
+              <div class="row justify-content-center">
+                <div class="col-md-10 col-lg-6 col-xl-5 order-2 order-lg-1">
+                  <a href="javascript:void(0);" onclick="goBack()"
+                    style="text-decoration: none; margin-right: 20px; font-size: 25px;"><i
+                      class="fa-solid fa-house"></i></a>
+                  <p class="text-center h1 fw-bold mb-5 mx-1 mx-md-4 mt-4" id="createText">Create chat account</p>
+                  <p id="success" class="text-center h5 fw-bold mb-5 mx-1 mx-md-4 mt-4"></p>
+                  <p class="text-center h1 fw-bold mb-5 mx-1 mx-md-4 mt-4" id="message"></p>
+                  <p class="text-center h1 fw-bold mb-5 mx-1 mx-md-4 mt-4 d-none" id="otp">Submit your otp</p>
+                  <p class="text-center mb-5 mx-1 mx-md-4 mt-4 " id="existusermessage"></p>
+
+                  <form class="mx-1 mx-md-4" action="/register" method="POST">
+
+                    <div class="d-flex flex-row align-items-center mb-4 " id="userName">
+                      <i class="fas fa-user fa-lg me-3 fa-fw"></i>
+                      <div class="form-outline flex-fill mb-0">
+                        <input id="Name" name="Name" type="text" class="form-control " />
+                        <label class="form-label" for="Name">Name</label>
+                      </div>
+                    </div>
+
+                    <div class="d-flex flex-row align-items-center mb-4 " id="emailBox">
+                      <i class="fas fa-envelope fa-lg me-3 fa-fw"></i>
+                      <div class="form-outline flex-fill mb-0">
+                        <input id="username" name="username" type="email" class="form-control " />
+                        <label class="form-label" for="username">Email</label>
+                      </div>
+                    </div>
+
+                    <div class="d-flex flex-row align-items-center mb-4 d-none" id="passwordBox">
+                      <i class="fas fa-lock fa-lg me-3 fa-fw"></i>
+                      <div class="form-outline flex-fill mb-0">
+                        <input type="password" id="password" name="password" class="form-control" />
+                        <label class="form-label" for="password">Password</label>
+                      </div>
+                    </div>
+
+                    <div class="form-check d-flex justify-content-center mb-5 d-none" id="term">
+                      <input class="form-check-input me-2" type="checkbox" value="" id="form2Example3c" required />
+                      <label class="form-check-label" for="form2Example3">
+                        I agree all statements in <a href="#!">Terms of service</a>
+                      </label>
+                    </div>
+
+                    <div class="d-flex justify-content-center mx-4 mb-3 mb-lg-4 d-none" id="btn">
+                      <button type="submit" class="btn btn-primary btn-lg" onclick="submitForm(event)">Register</button>
+                    </div>
+
+                  </form>
+
+                  <div class="otp-input-fields d-none" id="inputContainer">
+                    <input maxlength="1" class="otp__digit otp__field__1">
+                    <input maxlength="1" class="otp__digit otp__field__2">
+                    <input maxlength="1" class="otp__digit otp__field__3">
+                    <input maxlength="1" class="otp__digit otp__field__4">
+                  </div>
+
+                  <div id="none" class="d-flex justify-content-center mx-4 mb-3 mb-lg-4">
+
+                    <button id="getotp" onclick="verify()" class="btn btn-primary btn-lg" type="button">Get otp</button>
+                    <button id="verifyotp" onclick="otpverify()" class="btn btn-primary btn-lg d-none"
+                      type="button">otpVerify</button>
+                  </div>
+                  <!-- <div id="loading" class="loader">
+                    
+                  </div> -->
+                </div>
+
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+  <script>
+
+    const term = document.getElementById('term')
+    const inputContainer = document.getElementById('inputContainer')
+    const verifyotp = document.getElementById('verifyotp')
+    const getotp = document.getElementById('getotp')
+    const btn = document.getElementById('btn')
+    const success = document.getElementById('success')
+    const passwordBox = document.getElementById('passwordBox')
+    const nameBox = document.getElementById('userName')
+    const emailBox = document.getElementById('emailBox')
+    const otpmessage = document.getElementById('otp')
+    const createText = document.getElementById('createText');
+
+    const submitForm = async (event) => {
+      event.preventDefault()
+
+      const Name = document.getElementById('Name').value;
+      const email = document.getElementById('username').value;
+      const password = document.getElementById('password').value;
+
+      const data = {
+        Name: Name,
+        email: email,
+        password: password
+      }
+
+      try {
+        const response = await fetch('/register', {
+          method: 'POST',
+          headers: { 'Content-type': 'application/json' },
+          body: JSON.stringify(data)
+        })
+          .then(response => response.json())
+          .then(data => {
+            console.log(data)
+            location.replace('./loginPage.html')
+          }
+          )
+      } catch (error) {
+        console.log(error)
+      }
+    }
+
+
+    const otpverify = () => {
+      const input = document.querySelectorAll('.otp__digit');
+      let enteredOTP = '';
+
+      // Get the entered OTP from the input fields
+      input.forEach((digit) => {
+        if (digit.length == 1) {
+          digit.focus()
+        }
+        enteredOTP += digit.value;
+      });
+
+      const storedOTP = localStorage.getItem('otp');
+
+      if (enteredOTP === storedOTP) {
+        success.innerHTML = 'Otp matched successfully'
+
+        term.classList.remove('d-none')
+        verifyotp.classList.add("d-none")
+        inputContainer.classList.add('d-none')
+        btn.classList.remove('d-none')
+        nameBox.classList.remove('d-none')
+        emailBox.classList.remove('d-none')
+        passwordBox.classList.remove('d-none')
+
+        setTimeout(() => {
+          success.innerHTML = ''
+        }, 2000)
+        passwordBox.classList.remove('d-none')
+
+        // location.replace("")
+
+      } else {
+        console.log('OTP does not match');
+      }
+
+    };
+
+
+    var otp_inputs = document.querySelectorAll(".otp__digit")
+    var mykey = "0123456789".split("")
+    otp_inputs.forEach((_) => {
+      _.addEventListener("keyup", handle_next_input)
+    })
+    function handle_next_input(event) {
+      let current = event.target
+      let index = parseInt(current.classList[1].split("__")[2])
+      current.value = event.key
+
+      if (event.keyCode == 8 && index > 1) {
+        current.previousElementSibling.focus()
+      }
+      if (index < 6 && mykey.indexOf("" + event.key + "") != -1) {
+        var next = current.nextElementSibling;
+        next.focus()
+      }
+      var _finalKey = ""
+      for (let { value } of otp_inputs) {
+        _finalKey += value
+      }
+
+    }
+
+    // for back to home page
+    function goBack() {
+      window.history.back();
+    }
+
+
+    let item = ''
+    const verify = async () => {
+      const otpLength = 4;
+      let otp = "";
+
+      for (let i = 0; i < otpLength; i++) {
+        otp += Math.floor(Math.random() * 9);
+      }
+
+      localStorage.setItem('otp', otp)
+
+      const result = await fetch('/existUser')
+      const existData = await result.json()
+
+      let user = document.getElementById('username').value;
+
+      const compareUsername = existData.map(data => data.username)
+
+      if (compareUsername.includes(user)) {
+        document.getElementById('existusermessage').innerHTML = `User exist`
+        console.log('user exists');
+        user.value = null
+        
+      } else {
+
+        const email = user
+        // Make an HTTP request to the server-side API endpoint
+        fetch('/send-otp', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json'
+          },
+          body: JSON.stringify({
+            email: email,
+            otp: otp
+          })
+        })
+          .then(response => response.json())
+          .then(data => {
+            // Handle the response from the server-side component
+            
+            if (data.success == true) {
+              inputContainer.classList.remove('d-none')
+              getotp.classList.add('d-none')
+              verifyotp.classList.remove('d-none')
+              nameBox.classList.add('d-none')
+              emailBox.classList.add('d-none')
+              createText.classList.add('d-none')
+              otpmessage.classList.remove('d-none')
+            }
+
+          })
+          .catch(error => {
+            console.error('Error:', error);
+          });
+      };
+
+    }  
+  </script>
+</body>
+
+</html>

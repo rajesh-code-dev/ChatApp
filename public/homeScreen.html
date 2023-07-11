@@ -1,0 +1,336 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://kit.fontawesome.com/354d025927.js" crossorigin="anonymous"></script>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <title>Document</title>
+</head>
+
+<body>
+    <section style="background-color: #eee;">
+        <div class="container py-5">
+
+            <div class="row">
+                <div class="profileIcon">
+                    <div class="imgicon " onclick="profileBtn()" style="width: 50px;
+                        height: 50px;
+                        display: flex;
+                        justify-content: center;
+                        align-items: center;
+                        background: rgb(215, 207, 207);
+                        border-radius: 50px;">
+                        <i class="fa-solid fa-user"></i>
+
+                    </div>
+                </div>
+                <!-- user profile -->
+
+                <div class="col-md-6 col-lg-5 col-xl-4 mb-4 mb-md-0 d-flex">
+
+                    <div class="card" id="showProfile"
+                        style=" width: 100%; z-index: -1; height: 92%; transform: translateX(-600px); border: none; opacity: 0.8;">
+                        <h2>user</h2>
+                        <div class="userProfile">
+
+                            <div class="imgInput" style="width: 100px; height: 100px; background-color: burlywood;">
+                                <input type="file" id="profile-pic-input" accept="image/*">
+                                <img id="profile-pic-preview" src="" alt="Profile Picture" height="100px">
+                            </div>
+                            <!-- <button id="start-camera">Start Camera</button>
+                            <video id="video" width="320" height="240" autoplay></video>
+                            <button id="click-photo">Click Photo</button>
+                            <canvas id="canvas" width="320" height="240"></canvas> -->
+                        </div>
+                    </div>
+
+                    <div class="card" id="hideChatProfile" style="position: absolute; width: 28%;">
+
+                        <div class="card-body">
+
+                            <ul class="list-unstyled mb-0">
+                                <li class="p-2 border-bottom" style="background-color: #eee;">
+                                    <a href="#!" class="d-flex justify-content-between">
+                                        <div class="d-flex flex-row">
+                                            <img src="https://mdbcdn.b-cdn.net/img/Photos/Avatars/avatar-8.webp"
+                                                alt="avatar"
+                                                class="rounded-circle d-flex align-self-center me-3 shadow-1-strong"
+                                                width="60">
+                                            <div class="pt-1">
+                                                <p class="fw-bold mb-0">John Doe</p>
+                                                <p class="small text-muted">Hello, Are you there?</p>
+                                            </div>
+                                        </div>
+                                        <div class="pt-1">
+                                            <p class="small text-muted mb-1">Just now</p>
+                                            <span class="badge bg-danger float-end">1</span>
+                                        </div>
+                                    </a>
+                                </li>
+                                <li class="p-2 border-bottom">
+                                    <a href="#!" class="d-flex justify-content-between">
+                                        <div class="d-flex flex-row">
+                                            <img src="https://mdbcdn.b-cdn.net/img/Photos/Avatars/avatar-1.webp"
+                                                alt="avatar"
+                                                class="rounded-circle d-flex align-self-center me-3 shadow-1-strong"
+                                                width="60">
+                                            <div class="pt-1">
+                                                <p class="fw-bold mb-0">Danny Smith</p>
+                                                <p class="small text-muted">Lorem ipsum dolor sit.</p>
+                                            </div>
+                                        </div>
+                                        <div class="pt-1">
+                                            <p class="small text-muted mb-1">5 mins ago</p>
+                                        </div>
+                                    </a>
+                                </li>
+                                <li class="p-2 border-bottom">
+                                    <a href="#!" class="d-flex justify-content-between">
+                                        <div class="d-flex flex-row">
+                                            <img src="https://mdbcdn.b-cdn.net/img/Photos/Avatars/avatar-2.webp"
+                                                alt="avatar"
+                                                class="rounded-circle d-flex align-self-center me-3 shadow-1-strong"
+                                                width="60">
+                                            <div class="pt-1">
+                                                <p class="fw-bold mb-0">Alex Steward</p>
+                                                <p class="small text-muted">Lorem ipsum dolor sit.</p>
+                                            </div>
+                                        </div>
+                                        <div class="pt-1">
+                                            <p class="small text-muted mb-1">Yesterday</p>
+                                        </div>
+                                    </a>
+                                </li>
+                                <li class="p-2 border-bottom">
+                                    <a href="#!" class="d-flex justify-content-between">
+                                        <div class="d-flex flex-row">
+                                            <img src="https://mdbcdn.b-cdn.net/img/Photos/Avatars/avatar-3.webp"
+                                                alt="avatar"
+                                                class="rounded-circle d-flex align-self-center me-3 shadow-1-strong"
+                                                width="60">
+                                            <div class="pt-1">
+                                                <p class="fw-bold mb-0">Ashley Olsen</p>
+                                                <p class="small text-muted">Lorem ipsum dolor sit.</p>
+                                            </div>
+                                        </div>
+                                        <div class="pt-1">
+                                            <p class="small text-muted mb-1">Yesterday</p>
+                                        </div>
+                                    </a>
+                                </li>
+                                <li class="p-2 border-bottom">
+                                    <a href="#!" class="d-flex justify-content-between">
+                                        <div class="d-flex flex-row">
+                                            <img src="./images/download.jpg" alt="avatar"
+                                                class="rounded-circle d-flex align-self-center me-3 shadow-1-strong"
+                                                width="60">
+                                            <div class="pt-1">
+                                                <p class="fw-bold mb-0">Kate Moss</p>
+                                                <p class="small text-muted">Lorem ipsum dolor sit.</p>
+                                            </div>
+                                        </div>
+                                        <div class="pt-1">
+                                            <p class="small text-muted mb-1">Yesterday</p>
+                                        </div>
+                                    </a>
+                                </li>
+                                <li class="p-2 border-bottom">
+                                    <a href="#!" class="d-flex justify-content-between">
+                                        <div class="d-flex flex-row">
+                                            <img src="https://mdbcdn.b-cdn.net/img/Photos/Avatars/avatar-5.webp"
+                                                alt="avatar"
+                                                class="rounded-circle d-flex align-self-center me-3 shadow-1-strong"
+                                                width="60">
+                                            <div class="pt-1">
+                                                <p class="fw-bold mb-0">Lara Croft</p>
+                                                <p class="small text-muted">Lorem ipsum dolor sit.</p>
+                                            </div>
+                                        </div>
+                                        <div class="pt-1">
+                                            <p class="small text-muted mb-1">Yesterday</p>
+                                        </div>
+                                    </a>
+                                </li>
+                                <li class="p-2">
+                                    <a href="#!" class="d-flex justify-content-between">
+                                        <div class="d-flex flex-row">
+                                            <img src="https://mdbcdn.b-cdn.net/img/Photos/Avatars/avatar-6.webp"
+                                                alt="avatar"
+                                                class="rounded-circle d-flex align-self-center me-3 shadow-1-strong"
+                                                width="60">
+                                            <div class="pt-1">
+                                                <p class="fw-bold mb-0">Brad Pitt</p>
+                                                <p class="small text-muted">Lorem ipsum dolor sit.</p>
+                                            </div>
+                                        </div>
+                                        <div class="pt-1">
+                                            <p class="small text-muted mb-1">5 mins ago</p>
+                                            <span class="text-muted float-end"><i class="fas fa-check"
+                                                    aria-hidden="true"></i></span>
+                                        </div>
+                                    </a>
+                                </li>
+                            </ul>
+
+                        </div>
+                    </div>
+                </div>
+
+                <!-- chat box -->
+                <div class="col-md-6 col-lg-7 col-xl-8">
+
+                    <ul class="list-unstyled">
+                        <li class="d-flex justify-content-between mb-4">
+                            <img src="https://mdbcdn.b-cdn.net/img/Photos/Avatars/avatar-6.webp" alt="avatar"
+                                class="rounded-circle d-flex align-self-start me-3 shadow-1-strong" width="60">
+                            <div class="card">
+                                <div class="card-header d-flex justify-content-between p-3">
+                                    <p class="fw-bold mb-0">Brad Pitt</p>
+                                    <p class="text-muted small mb-0"><i class="far fa-clock"></i>12 mins ago</p>
+                                </div>
+                                <div class="card-body">
+                                    <p class="mb-0">
+                                        Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor
+                                        incididunt ut
+                                        labore et dolore magna aliqua.
+                                    </p>
+                                </div>
+                            </div>
+                        </li>
+                        <li class="d-flex justify-content-between mb-4">
+                            <div class="card w-100">
+                                <div class="card-header d-flex justify-content-between p-3">
+                                    <p class="fw-bold mb-0">Lara Croft</p>
+                                    <p class="text-muted small mb-0"><i class="far fa-clock"></i> 13 mins ago</p>
+                                </div>
+                                <div class="card-body">
+                                    <p class="mb-0">
+                                        Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium
+                                        doloremque
+                                        laudantium.
+                                    </p>
+                                </div>
+                            </div>
+                            <img src="https://mdbcdn.b-cdn.net/img/Photos/Avatars/avatar-5.webp" alt="avatar"
+                                class="rounded-circle d-flex align-self-start ms-3 shadow-1-strong" width="60">
+                        </li>
+                        <li class="d-flex justify-content-between mb-4">
+                            <img src="https://mdbcdn.b-cdn.net/img/Photos/Avatars/avatar-6.webp" alt="avatar"
+                                class="rounded-circle d-flex align-self-start me-3 shadow-1-strong" width="60">
+                            <div class="card">
+                                <div class="card-header d-flex justify-content-between p-3">
+                                    <p class="fw-bold mb-0">Brad Pitt</p>
+                                    <p class="text-muted small mb-0"><i class="far fa-clock"></i> 10 mins ago</p>
+                                </div>
+                                <div class="card-body">
+                                    <p class="mb-0">
+                                        Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor
+                                        incididunt ut
+                                        labore et dolore magna aliqua.
+                                    </p>
+                                </div>
+                            </div>
+                        </li>
+                        <li class="bg-white mb-3">
+                            <div class="form-outline">
+                                <textarea class="form-control" id="textAreaExample2" rows="4"></textarea>
+                                <label class="form-label" for="textAreaExample2">Message</label>
+                            </div>
+                        </li>
+                        <button type="button" class="btn btn-info btn-rounded float-end">Send</button>
+                    </ul>
+
+                </div>
+
+
+            </div>
+
+        </div>
+    </section>
+
+    <button class="btn btn-primary " type="button" id="btn" onclick="logout()">logout</button>
+
+    <script>
+        const logout = async () => {
+            try {
+                const response = await fetch('/user/logout')
+                const data = await response.json();
+                if (data.result == 'success') {
+                    location.reload()
+                }
+            } catch (error) {
+                console.log(error)
+            }
+        }
+
+        window.addEventListener('DOMContentLoad',
+            console.log('home page'))
+
+        const profileBtn = () => {
+            let showProfile = document.getElementById('showProfile')
+            let hideChatProfile = document.getElementById('hideChatProfile')
+
+            if (showProfile.style.zIndex == '-1') {
+                showProfile.style.zIndex = '1'
+                showProfile.style.transform = 'translateX(00px)'
+                showProfile.style.transitionProperty = 'transform';
+                showProfile.style.transitionTiming = 'ease-in-out'
+                showProfile.style.transitionDuration = '3s';
+            } else {
+                showProfile.style.zIndex = '-1'
+                showProfile.style.transform = 'translateX(-600px)'
+                showProfile.style.transitionProperty = 'transform';
+                showProfile.style.transitionTiming = 'ease-out-in'
+                showProfile.style.transitionDuration = '3s';
+            }
+        }
+
+
+        // camara features
+        let camera_button = document.querySelector("#start-camera");
+        let video = document.querySelector("#video");
+        let click_button = document.querySelector("#click-photo");
+        let canvas = document.querySelector("#canvas");
+
+        // camara open
+        camera_button.addEventListener('click', async function () {
+            let stream = await navigator.mediaDevices.getUserMedia({ video: true, audio: false });
+            video.srcObject = stream;
+        });
+
+        // capture
+        click_button.addEventListener('click', function () {
+            canvas.getContext('2d').drawImage(video, 0, 0, canvas.width, canvas.height);
+            let image_data_url = canvas.toDataURL('image/jpeg');
+            // data url of the image
+            console.log(image_data_url);
+
+        });
+
+
+        // / Get the input element and preview image element
+        const profilePicInput = document.getElementById('profile-pic-input');
+        const profilePicPreview = document.getElementById('profile-pic-preview');
+        
+        // Add an event listener to the input element
+        profilePicInput.addEventListener('change', function(event) {
+            const file = event.target.files[0];
+            
+            if (file) {
+                // Read the selected file as a data URL
+                const reader = new FileReader();
+                reader.onload = function(e) {
+                    // Set the preview image source to the data URL
+                    profilePicPreview.src = e.target.result;
+                }
+                let url = reader.readAsDataURL(file);
+                console.log(url)
+            }
+        });
+    </script>
+</body>
+
+</html>

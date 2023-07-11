@@ -1,0 +1,414 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM" crossorigin="anonymous">
+    <script src="https://kit.fontawesome.com/354d025927.js" crossorigin="anonymous"></script>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            width: 100vw;
+            height: 100vh;
+        }
+
+        .form-container {
+            font-family: 'Mukta', sans-serif;
+            padding: 0 20px 20px 0;
+        }
+
+        .form-container .form-horizontal {
+            background: repeating-linear-gradient(45deg, #fff, #fff 10px, #f9f9f9 10px, #f9f9f9 20px);
+            padding: 70px 40px 40px;
+            border-radius: 0;
+            border: 2px solid rgba(0, 0, 0, 0.1);
+            box-shadow: 20px 20px 0 rgba(0, 0, 0, 0.1);
+            position: relative;
+        }
+
+        .form-horizontal .title {
+            color: #222;
+            font-size: 80px;
+            font-weight: 700;
+            margin: 0 0 8px 0;
+        }
+
+        .form-horizontal .description {
+            color: #222;
+            font-size: 18px;
+            font-weight: 600;
+            margin: 0 0 30px 0;
+            display: block;
+        }
+
+        .form-horizontal .form-group {
+            margin: 0 0 30px;
+        }
+
+        .form-horizontal .form-group:nth-child(3) {
+            margin-bottom: 20px;
+        }
+
+        .form-horizontal .form-control {
+            color: #446DCA;
+            font-size: 16px;
+            letter-spacing: 1px;
+            height: 40px;
+            padding: 2px 15px;
+            border: 1px solid #e7e7e7;
+            border-top-width: 2px;
+            border-left-width: 2px;
+            box-shadow: none;
+            border-radius: 0;
+            transition: all 0.3s ease 0s;
+        }
+
+        .form-horizontal .form-control:focus {
+            box-shadow: none;
+            border-color: #446DCA;
+        }
+
+        .form-horizontal .form-control::placeholder {
+            color: #222;
+            font-size: 15px;
+        }
+
+        .form-horizontal .btn {
+            color: #fff;
+            background-color: #446DCA;
+            font-size: 18px;
+            font-weight: 600;
+            text-align: left;
+            width: 180px;
+            padding: 10px 30px;
+            margin: 0 25px 0 0;
+            border-radius: 30px;
+            border: none;
+            display: inline-block;
+            overflow: hidden;
+            position: relative;
+            z-index: 1;
+            transition: all 0.3s ease 0s;
+        }
+
+        .form-horizontal .btn:hover,
+        .form-horizontal .btn:focus {
+            color: #fff;
+            background-color: #222;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+            outline: none;
+        }
+
+        .form-horizontal .btn:after {
+            content: '';
+            height: 70%;
+            width: 110%;
+            border-top: 5px solid #fff;
+            border-bottom: 5px solid #fff;
+            transform: rotate(-50deg);
+            position: absolute;
+            right: -105px;
+            top: -65px;
+            transition: all 0.5s ease 0s;
+        }
+
+        .form-horizontal .btn:hover:after {
+            right: -70px;
+            top: -30px;
+        }
+
+        .form-horizontal .signup {
+            color: #222;
+            font-size: 18px;
+            font-weight: 600;
+            margin: 0 0 35px 0;
+            vertical-align: text-top;
+            display: inline-block;
+        }
+
+        .form-horizontal .signup a {
+            color: #446DCA;
+            text-decoration: underline;
+            margin: 0 0 0 25px;
+        }
+
+        .form-horizontal .signup a:hover {
+            color: #000;
+            transition: all 0.3s ease 0s;
+        }
+
+        .form-horizontal .forgot {
+            color: #446DCA;
+            text-decoration: underline;
+            display: block;
+        }
+
+        .form-horizontal .forgot a {
+            color: #446DCA;
+            transition: all 0.3s ease 0s;
+        }
+
+        .form-horizontal .forgot a:hover {
+            color: #222;
+        }
+
+        @media only screen and (max-width:479px) {
+            .form-container .form-horizontal {
+                padding-left: 20px;
+                padding-right: 20px;
+            }
+
+            .form-horizontal .title {
+                font-size: 55px;
+            }
+
+            .form-horizontal .description {
+                font-size: 16px;
+            }
+
+            .form-horizontal .form-control::placeholder {
+                font-size: 14px;
+            }
+
+            .form-horizontal .btn {
+                display: block;
+                margin: 0 auto 20px;
+            }
+
+            .form-horizontal .signup {
+                text-align: center;
+                margin: 0 auto 20px;
+                display: block;
+            }
+
+            .form-horizontal .forgot {
+                text-align: center;
+            }
+        }
+
+        /* // cookies */
+        #cookiePopup {
+            background: white;
+            width: 25%;
+            position: fixed;
+            left: 10px;
+            bottom: 20px;
+            box-shadow: 0px 0px 15px #cccccc;
+            padding: 5px 10px;
+        }
+
+        #cookiePopup p {
+            text-align: left;
+            font-size: 15px;
+            color: #4e4e4e;
+        }
+
+        #cookiePopup button {
+            width: 100%;
+            border: navajowhite;
+            background: #097fb7;
+            padding: 5px;
+            border-radius: 10px;
+            color: white;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="form-bg">
+        <div class="container">
+            <div class="">
+                <div class="col-md-offset-3  col-sm-offset-2 ">
+                    <div class="form-container">
+                        <form class="form-horizontal" action="/" method="post" onsubmit="login(this); return false;">
+                            <h3 class="title">Hi there.</h3>
+                            <span class="description">Lorem ipsum dolor sit amet.</span>
+                            <div class="form-group">
+                                <input class="form-control" name="username" id="username" type="email"
+                                    placeholder="Enter your Username" fdprocessedid="qvrx5">
+                            </div>
+                            <div class="form-group d-flex">
+                                <input class="form-control" name="password" id="password" type="password"
+                                    placeholder="Enter your Password" fdprocessedid="n7vo4d">
+                                <i id="togglePassword" class="fa-solid fa-lock-open"
+                                    style=" margin-left: -30px; cursor: pointer; margin-top: 12px;"></i>
+                            </div>
+                            <button class="btn signin" type="submit" fdprocessedid="h0lhh">Login</button>
+                            <span class="signup">or <a href="/createUser.html">Sign up</a></span>
+                            <span class="forgot"><a href="/forgotPassword.html">Forgot Password?</a></span>
+                        </form>
+
+                        
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div id="cookiePopup">
+            <h4>Cookie Consent</h4>
+            <p>Our website uses cookies to provide your browsing experience and relavent
+                informations.Before continuing to use our website, you agree & accept of our <a
+                    href="#">Cookie Policy & Privacy</a></p>
+            <button type="button" onclick="acceptCookie()">Accept</button>
+        </div>
+    </div>
+
+    <script>
+
+        const login = async form => {
+            const username = document.getElementById('username').value;
+            const password = document.getElementById('password').value;
+
+            const user = {
+                username: username,
+                password: password
+            }
+            try {
+                const result = await fetch('/', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify(user)
+                })
+
+                const data = await result.json()
+
+                if (data.result === 'SUCCESS') {
+                    location.reload()
+                } else {
+                    alert('User login operation error (message: ' + data.message + ').');
+                }
+
+            } catch (error) {
+                console.log(error)
+            }
+        }
+
+
+        const togglePassword = document.querySelector('#togglePassword');
+        const password = document.querySelector('#password');
+
+        togglePassword.addEventListener('click', function (e) {
+            // toggle the type attribute
+            const type = password.getAttribute('type') === 'password' ? 'text' : 'password';
+            password.setAttribute('type', type);
+
+            if (password.getAttribute('type') === 'password') {
+                togglePassword.classList.add('fa-lock');
+                togglePassword.classList.remove('fa-lock-open')
+            } else {
+                togglePassword.classList.remove('fa-lock');
+                togglePassword.classList.add('fa-lock-open')
+            }
+        });
+
+
+
+        /* Storing user's device details in a variable*/
+        let details = navigator.userAgent;
+
+        /* Creating a regular expression
+        containing some mobile devices keywords
+        to search it in details string*/
+        let regexp = /android|iphone|kindle|ipad/i;
+
+        /* Using test() method to search regexp in details
+        it returns boolean value*/
+        let isMobileDevice = regexp.test(details);
+
+        if (isMobileDevice) {
+            console.log("You are using a Mobile Device");
+        } else {
+            console.log("You are using Desktop");
+        }
+
+        // which page opened or not
+        window.addEventListener('DOMContentLoad',
+            console.log('login page'))
+
+
+
+
+        // user location
+        const successCallback = async (position) => {
+            console.log(position);
+            // console.log(position.coords.latitude)
+            // console.log(position.coords.longitude)
+            let result = await fetch(`https://api.opencagedata.com/geocode/v1/json?q=${position.coords.latitude}+${position.coords.longitude}&key=9ad13ba3b4ed4138a2a7dbecae621501`)
+                .then(result => result.json()
+                    .then(data => {
+                        console.log(data.results[0].formatted)
+                    }))
+        };
+
+        const errorCallback = (error) => {
+            console.log(error);
+        };
+
+        const loc = navigator.geolocation.getCurrentPosition(successCallback, errorCallback);
+
+
+        // set cookies
+        let cookieName = 'ChatApp';
+        let cookieValue = 'Chat with anyone';
+        let expiryDate = 30
+
+     
+        let acceptCookie = function (cookieName, cookieValue, expiryDate) {
+            let currentDate = new Date();
+            currentDate.setTime(currentDate.getTime() + (expiryDate * 24 * 60 * 60 * 1000))
+
+            let expires = "Expire=" + currentDate.toGMTString();
+            document.cookie = cookieName + "=" + cookieValue + "; expires=" + expiryDate + "; path=/";
+
+
+            if (document.cookie) {
+                document.getElementById('cookiePopup').style.display = 'none';
+            } else {
+                alert("Unable to set cookie. Please allow all cookies site from cookie setting of your browser");
+            }
+        }
+
+        // get cookie from the web browser
+        let getCookie = function (cookieName) {
+            let name = cookieName + "=";
+            let decodedCookie = decodeURIComponent(document.cookie);
+            let ca = decodedCookie.split(';');
+            for (let i = 0; i < ca.length; i++) {
+                let c = ca[i];
+                while (c.charAt(0) == ' ') {
+                    c = c.substring(1);
+                }
+                if (c.indexOf(name) == 0) {
+                    return c.substring(name.length, c.length);
+                }
+            }
+            return "";
+        }
+        
+        // check cookie is set or not
+        let checkCookie = function () {
+            let check = getCookie(cookieName);
+            if (check == "") {
+                document.getElementById("cookiePopup").style.display = "block";
+            } else {
+
+                document.getElementById("cookiePopup").style.display = "none";
+            }
+        }
+        checkCookie();
+    </script>
+</body>
+
+</html>
